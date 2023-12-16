@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
 import './index.css'
 
 import {
@@ -10,9 +11,7 @@ import {
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import Layout from './layout/Layout.tsx';
-import Error from './layout/Error.tsx';
-import Home from './Components/Home.tsx';
+import { Arbitrum, DAppProvider, Goerli, Mainnet, Optimism, Polygon } from '@usedapp/core';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -29,20 +28,24 @@ const app = initializeApp(firebaseConfig);
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout></Layout>,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "",
-        element: <Home />,
-      },
-    ],
+    element: <App></App>,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <DAppProvider config={{
+      readOnlyChainId: Mainnet.chainId,
+      readOnlyUrls: {
+        [Mainnet.chainId]: "https://mainnet.infura.io/v3/fa8028219cfa4f9aaad2b0cb420d4c90",
+        [Arbitrum.chainId]: "https://arbitrum-mainnet.infura.io/v3/fa8028219cfa4f9aaad2b0cb420d4c90",
+        [Optimism.chainId]: "https://optimism-mainnet.infura.io/v3/fa8028219cfa4f9aaad2b0cb420d4c90",
+        [Polygon.chainId]: "https://polygon-mainnet.infura.io/v3/fa8028219cfa4f9aaad2b0cb420d4c90",
+        [Goerli.chainId]: "https://goerli.infura.io/v3/fa8028219cfa4f9aaad2b0cb420d4c90"
+      },
+    }}>
+      <RouterProvider router={router} />
+    </DAppProvider>
   </React.StrictMode>,
 )
 
