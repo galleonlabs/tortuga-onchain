@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css'
 import ConnectButton from './components/ConnectButton'
 import Articles from './components/Articles'
@@ -17,9 +17,21 @@ function App(): JSX.Element {
   const { state, sendTransaction } = useSendTransaction();
   const [openTip, setOpenTip] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<'The Trade Winds' | 'Disclosures'>('The Trade Winds');
+  const trackUrls = [
+    'https://openseauserdata.com/files/a48db64415813e83744d64e2383320e7.wav',
+    'https://openseauserdata.com/files/6fa6d2cb8479465485bec5c198588a9e.wav',
+    'https://openseauserdata.com/files/a14efe2f7f6463d1320718a0bf435cb2.wav'
+  ];
+
+  const [trackNumber, setTrackNumber] = useState(0);
+  const [audio, setAudio] = useState(new Audio(trackUrls[trackNumber]));
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     if (!account) return;
+    if (!isPlaying) {
+      handlePlayMusic()
+    }
     fetchConfig();
     recordAddress();
     checkPendingTransaction();
@@ -30,6 +42,21 @@ function App(): JSX.Element {
   }, []);
 
 
+  useEffect(() => {
+    const newAudio = new Audio(trackUrls[trackNumber]);
+    setAudio(newAudio);
+
+    if (isPlaying) {
+      newAudio.play().catch(e => console.error("Error playing audio:", e));
+    }
+
+    // Cleanup function
+    return () => {
+      newAudio.pause();
+      newAudio.currentTime = 0;
+    };
+  }, [trackNumber]);
+  
   const recordAddress = async () => {
     if (!account) return;
     const accountRef = doc(db, "accounts", account.toLowerCase());
@@ -110,6 +137,23 @@ function App(): JSX.Element {
     }
   };
 
+  const handlePlayMusic = () => {
+    audio.play().catch(e => console.error("Error playing audio:", e));
+    setIsPlaying(true);
+  };
+
+  const handlePauseMusic = () => {
+    audio.pause();
+    setIsPlaying(false);
+  };
+
+  const setNextTrack = () => {
+    const nextTrackNumber = (trackNumber + 1) % trackUrls.length;
+    setTrackNumber(nextTrackNumber);
+  };
+
+
+
   return (
     <div className='mx-auto max-w-4xl  min-h-full mb-32 text-theme-yellow rounded-sm mt-16  justify-center '>
       <>
@@ -135,7 +179,17 @@ function App(): JSX.Element {
 
           </div>
 
-
+          {account && <div className='justify-center mx-auto text-center pt-2'>
+            {!isPlaying ? <button onClick={handlePlayMusic} className="text-sm  px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20">
+              Play Music
+            </button> : <button onClick={handlePauseMusic} className="text-sm animate-pulse  px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20">
+              Pause Music
+            </button>}
+            <button onClick={setNextTrack} className="text-sm  px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20">
+              Next Track
+            </button>
+          </div>
+          }
 
           <Transition.Root show={openTip} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={setOpenTip}>
