@@ -217,41 +217,43 @@ function App(): JSX.Element {
         </div>
       </>
 
-      {account && <div>
-        <div className='justify-center mx-auto text-center border-t-2 border-x-2 border-theme-yellow  bg-theme-gray '>
 
-          <button
-            onClick={() => setCurrentPage('The Trade Winds')}
-            className={`mt-4 mb-4 border-2 border-theme-yellow mr-3 text-md px-2 rounded-sm ${currentPage === 'The Trade Winds' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray'}  justify-center text-center inline-flex mx-auto`}
-          >
-            The Trade Winds
-          </button>
+      <div className='justify-center mx-auto text-center border-t-2 border-x-2 border-theme-yellow  bg-theme-gray '>
+
+        <button
+          onClick={() => setCurrentPage('The Trade Winds')}
+          className={`mt-4 mb-4 border-2 border-theme-yellow mr-3 text-md px-2 rounded-sm ${currentPage === 'The Trade Winds' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray'}  justify-center text-center inline-flex mx-auto`}
+        >
+          The Trade Winds
+        </button>
+        {account &&
           <button
             onClick={() => setCurrentPage('Disclosures')}
             className={`mt-4 mb-4 border-2 border-theme-yellow text-md px-2 rounded-sm ${currentPage === 'Disclosures' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray text-theme-yellow'}  justify-center text-center inline-flex mx-auto`}
           >
             Disclosures
           </button>
-        </div>
-        <>
-          {currentPage === 'The Trade Winds' ? (
-            <Articles config={harvest}></Articles>
-          ) : (
-            <Harvest config={harvest}></Harvest>
-          )}
+        }
+      </div>
+      <>
+        {currentPage === 'The Trade Winds' ? (
+          <Articles config={harvest}></Articles>
+        ) : (
+          <Harvest config={harvest}></Harvest>
+        )}
 
-        </>
-
-
-        <div className="bg-theme-gray border-b-2 border-x-2 border-theme-yellow mx-auto flex justify-evenly  rounded-b-sm max-w-4xl py-4  pt-4">
+      </>
 
 
-          <a target='_blank' href='https://twitter.com/tortugaonchain' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Twitter</a>
-          <a target='_blank' href='https://twitter.com/andrew_eth' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Davy Jones</a>
-          <a target='_blank' href='https://galleonlabs.io' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Galleon Labs</a>
-          <a target='_blank' href='https://github.com/galleonlabs/tortuga-onchain' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Github</a>
-        </div>
-      </div>}
+      <div className="bg-theme-gray border-b-2 border-x-2 border-theme-yellow mx-auto flex justify-evenly  rounded-b-sm max-w-4xl py-4  pt-4">
+
+
+        <a target='_blank' href='https://twitter.com/tortugaonchain' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Twitter</a>
+        <a target='_blank' href='https://twitter.com/andrew_eth' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Davy Jones</a>
+        <a target='_blank' href='https://galleonlabs.io' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Galleon Labs</a>
+        <a target='_blank' href='https://github.com/galleonlabs/tortuga-onchain' className='text-md text-center inline-flex border-b hover:border-b-theme-yellow border-transparent'>Github</a>
+      </div>
+
     </div>
   )
 }

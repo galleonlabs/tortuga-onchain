@@ -1,4 +1,3 @@
-import { useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
 import { DocumentData, collection, getDocs, limit, query } from "firebase/firestore";
 import { db } from "../main";
@@ -15,11 +14,11 @@ interface ArticlesProps {
 }
 
 const Articles = ({ config }: ArticlesProps) => {
-  const { account } = useEthers();
+
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    if (!account) return;
+
     console.log('config: ', config)
     const fetchActiveFarms = async (fetchCount: number = 10) => {
       const articleQuery = query(collection(db, 'articles'), limit(fetchCount));
@@ -36,13 +35,13 @@ const Articles = ({ config }: ArticlesProps) => {
     };
 
     fetchData();
-  }, [account]);
+  }, []);
 
   return (
     <div className="border-2 border-theme-yellow">
       <div className="mx-auto bg-theme-gray   rounded-sm max-w-4xl y-8  ">
         <h1 className="text-lg font-bold text-theme-pan-navy mb-2 text-center pt-4">The Trade Winds</h1>
-        {account && <p className='text-md text-center pb-1'>Actionable crypto-native content for speculators.</p>}
+        <p className='text-md text-center pb-1'>Actionable crypto-native content for speculators.</p>
       </div>
 
       <ul role="list" className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1 mx-8 pt-4 pb-12">
