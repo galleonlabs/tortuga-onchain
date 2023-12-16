@@ -1,2 +1,2 @@
-export const officialWebsite = "https://wojakjonesfarm.com";
-export const twitterLink = "https://twitter.com/galleonlabs";
+export const officialWebsite = "https://tortugaonchain.com";
+export const twitterLink = "https://twitter.com/tortugaonchain";

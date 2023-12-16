@@ -7,7 +7,7 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-const listFarms = async (collectionName) => {
+const listArticles = async (collectionName) => {
   const collectionRef = db.collection(collectionName);
   const snapshot = await collectionRef.get();
   snapshot.forEach((doc) => {
@@ -15,4 +15,4 @@ const listFarms = async (collectionName) => {
   });
 };
 
-listFarms("activeFarms"); // Replace with "archivedFarms" to list archived farms
+listArticles("articles"); // Replace with "archivedFarms" to list archived farms

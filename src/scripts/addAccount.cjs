@@ -9,7 +9,6 @@ const db = admin.firestore();
 
 //   {
 //     account: "0x...".toLowerCase(),
-//     paid: false,
 //   },
 
 const accountData = [];

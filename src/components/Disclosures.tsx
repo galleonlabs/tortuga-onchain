@@ -24,18 +24,12 @@ const Disclosures = ({ config }: DisclosuresProps) => {
 
     const fetchDisclosures = async () => {
       const querySnapshot = await getDocs(collection(db, "disclosures"));
-      const assetMap = new Map<string, HeldAsset>();
 
-      querySnapshot.docs.forEach(doc => {
-        const harvestData = doc.data() as { rewardAssets: HeldAsset[] };
-        harvestData.rewardAssets.forEach(asset => {
-          if (!assetMap.has(asset.ticker)) {
-            assetMap.set(asset.ticker, asset);
-          }
-        });
+      const assets = querySnapshot.docs.map(doc => {
+        return doc.data() as HeldAsset;
       });
 
-      setUniqueAssets(Array.from(assetMap.values()));
+      setUniqueAssets(assets);
     };
 
     fetchDisclosures();
@@ -44,17 +38,17 @@ const Disclosures = ({ config }: DisclosuresProps) => {
   return (
     <div >
       {account ? (
-        <div className="mx-auto bg-theme-gray border-2 border-theme-yellow rounded-sm max-w-4xl py-8 tracking-wider">
-          <h1 className="text-lg font-bold text-theme-yellow mb-2 text-center pt-4">Disclosures</h1>
-          <p className='text-md text-center pb-4'>Assets currently held in the treasury</p>
-          <div className={`my-1 px-8 mx-8 rounded-sm pb-3 pt-3 border-2 mb-4  border-theme-yellow bg-theme-gray   flex flex-wrap`}>
+        <div className="mx-auto bg-theme-gray border-2 border-theme-yellow rounded-sm max-w-4xl py-4 tracking-wider">
+          <h1 className="text-lg font-bold text-theme-yellow mb-2 text-center ">Disclosures</h1>
+          <p className='text-md text-center pb-4'>Long-term assets currently held in the treasury</p>
+          <div className={`my-1 px-8 mx-8 rounded-sm pb-3 pt-3  mb-4   bg-theme-yellow/10   flex flex-wrap`}>
             {uniqueAssets.map((asset, idx) => (
-              <div key={idx} className="flex items-center mx-4 my-2">
-                <img src={asset.logo} alt={asset.name} className="w-12 h-12 mr-2  rounded-full border-2 border-theme-yellow p-0.5 bg-theme-yellow" />
-                <a href={asset.coinGeckoUrl} target="_blank" rel="noopener noreferrer" className="text-xl hover:underline ">
+              <a key={idx} href={asset.coinGeckoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center mx-4 my-2">
+                <img src={asset.logo} alt={asset.name} className="w-8 h-8 mr-2  rounded-full border-2 border-theme-yellow  bg-white" />
+                <span className="text-md ">
                   {asset.ticker}
-                </a>
-              </div>
+                </span>
+              </a>
             ))}
           </div>
         </div>
