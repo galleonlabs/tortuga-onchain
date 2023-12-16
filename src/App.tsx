@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import ConnectButton from './components/ConnectButton'
 import Articles from './components/Articles'
@@ -56,7 +56,7 @@ function App(): JSX.Element {
       newAudio.currentTime = 0;
     };
   }, [trackNumber]);
-  
+
   const recordAddress = async () => {
     if (!account) return;
     const accountRef = doc(db, "accounts", account.toLowerCase());
