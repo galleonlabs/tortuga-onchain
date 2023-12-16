@@ -39,7 +39,7 @@ const Disclosures = ({ config }: DisclosuresProps) => {
     <div >
       {account ? (
         <div className="mx-auto bg-theme-gray border-2 border-theme-yellow rounded-sm max-w-4xl py-4 tracking-wider">
-          <h1 className="text-lg font-bold text-theme-yellow mb-2 text-center ">Disclosures</h1>
+          <h1 className="text-lg font-bold text-theme-yellow  text-center ">Disclosures</h1>
           <p className='text-md text-center pb-4'>Long-term assets currently held in the treasury</p>
           <div className={`my-1 px-8 mx-8 rounded-sm pb-3 pt-3  mb-4   bg-theme-yellow/10   flex flex-wrap`}>
             {uniqueAssets.map((asset, idx) => (

@@ -217,24 +217,24 @@ function App(): JSX.Element {
         </div>
       </>
 
+      {account &&
+        <div className='justify-center mx-auto text-center border-t-2 border-x-2 border-theme-yellow  bg-theme-gray '>
 
-      <div className='justify-center mx-auto text-center border-t-2 border-x-2 border-theme-yellow  bg-theme-gray '>
+          <button
+            onClick={() => setCurrentPage('The Trade Winds')}
+            className={`mt-4 mb-4 border-2 border-theme-yellow mr-3 text-md px-2 rounded-sm ${currentPage === 'The Trade Winds' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray'}  justify-center text-center inline-flex mx-auto`}
+          >
+            The Trade Winds
+          </button>
 
-        <button
-          onClick={() => setCurrentPage('The Trade Winds')}
-          className={`mt-4 mb-4 border-2 border-theme-yellow mr-3 text-md px-2 rounded-sm ${currentPage === 'The Trade Winds' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray'}  justify-center text-center inline-flex mx-auto`}
-        >
-          The Trade Winds
-        </button>
-        {account &&
           <button
             onClick={() => setCurrentPage('Disclosures')}
             className={`mt-4 mb-4 border-2 border-theme-yellow text-md px-2 rounded-sm ${currentPage === 'Disclosures' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray text-theme-yellow'}  justify-center text-center inline-flex mx-auto`}
           >
             Disclosures
           </button>
-        }
-      </div>
+
+        </div>}
       <>
         {currentPage === 'The Trade Winds' ? (
           <Articles config={harvest}></Articles>

@@ -40,7 +40,7 @@ const Articles = ({ config }: ArticlesProps) => {
   return (
     <div className="border-2 border-theme-yellow">
       <div className="mx-auto bg-theme-gray   rounded-sm max-w-4xl y-8  ">
-        <h1 className="text-lg font-bold text-theme-pan-navy mb-2 text-center pt-4">The Trade Winds</h1>
+        <h1 className="text-lg font-bold text-theme-pan-navy  text-center pt-4">The Trade Winds</h1>
         <p className='text-md text-center pb-1'>Actionable crypto-native content for speculators.</p>
       </div>
 
