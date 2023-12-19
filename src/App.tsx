@@ -170,7 +170,7 @@ function App(): JSX.Element {
             <a href='https://tortugaonchain.substack.com/' target='_blank' className="border-2 ml-3 border-theme-yellow text-md px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20 justify-center text-center inline-flex mx-auto">
               Substack
             </a>
-            <a href='https://apps.tortugaonchain.com' target='_blank' className="border-2 ml-3 border-theme-yellow text-md px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20 justify-center text-center inline-flex mx-auto">
+            <a href='https://apps.tortugaonchain.com' target='_blank' className="border-2 ml-3 mt-2 border-theme-yellow text-md px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20 justify-center text-center inline-flex mx-auto">
              Trading Dashboard
             </a>
             {account && <button onClick={() => setOpenTip(true)} className="border-2 ml-3 mt-2 border-theme-yellow text-md px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20 justify-center text-center inline-flex mx-auto">
