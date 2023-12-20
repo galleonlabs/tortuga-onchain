@@ -11,9 +11,10 @@ interface Article {
 
 interface ArticlesProps {
   config: DocumentData | null;
+  dbCollection: string
 }
 
-const Articles = ({ config }: ArticlesProps) => {
+const Articles = ({ config, dbCollection }: ArticlesProps) => {
 
   const [articles, setArticles] = useState<Article[]>([]);
 
@@ -21,7 +22,7 @@ const Articles = ({ config }: ArticlesProps) => {
 
     console.log('config: ', config)
     const fetchActiveFarms = async (fetchCount: number = 10) => {
-      const articleQuery = query(collection(db, 'articles'), limit(fetchCount));
+      const articleQuery = query(collection(db, dbCollection), limit(fetchCount));
       const querySnapshot = await getDocs(articleQuery);
       const fetchedArticles: Article[] = [];
       querySnapshot.forEach((doc: DocumentData) => {
@@ -35,13 +36,21 @@ const Articles = ({ config }: ArticlesProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [dbCollection]);
 
   return (
     <div className="border-2 border-theme-yellow">
       <div className="mx-auto bg-theme-gray   rounded-sm max-w-4xl y-8  ">
-        <h1 className="text-lg font-bold text-theme-pan-navy  text-center pt-4">The Trade Winds</h1>
-        <p className='text-md text-center pb-1'>Actionable crypto-native content for speculators.</p>
+        {dbCollection === 'articles' ?
+          <>
+            <h1 className="text-lg font-bold text-theme-pan-navy  text-center pt-4">The Trade Winds</h1>
+            <p className='text-md text-center pb-1'>Actionable crypto-native content for speculators.</p>
+          </> :
+          <>
+            <h1 className="text-lg font-bold text-theme-pan-navy  text-center pt-4">Portfolios</h1>
+            <p className='text-md text-center pb-1'>Novel experiments in portfolio management.</p>
+          </>}
+
       </div>
 
       <ul role="list" className="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1 mx-8 pt-4 pb-12">
@@ -61,7 +70,7 @@ const Articles = ({ config }: ArticlesProps) => {
         ))}
 
       </ul>
-      <iframe className="mx-auto -mt-8 min-w-full"  src="https://tortugaonchain.substack.com/embed" ></iframe>
+      <iframe className="mx-auto -mt-8 min-w-full" src="https://tortugaonchain.substack.com/embed" ></iframe>
     </div>
   );
 };

@@ -7,20 +7,20 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-const disclosureData = [
+const farmData = [
   {
-    name: "Blur",
-    ticker: "BLUR",
-    coinGeckoUrl: "https://www.coingecko.com/en/coins/blur",
-    logo: "https://assets.coingecko.com/coins/images/28453/standard/blur.png",
+    name: "Portfolios #1 - 2024 Timelock, Altcoin Index vs Memes vs Majors.",
+    subtitle: "With 2024 looking optimistic for the crypto markets, what will ultimately outperform?",
+    link: "https://tortugaonchain.substack.com/p/portfolios-1-2024-timelock-altcoin",
+    issue: 1,
   },
 ];
 
 const batch = db.batch();
 
-disclosureData.forEach((disclosure) => {
-  const ref = db.collection("disclosures").doc();
-  batch.set(ref, disclosure);
+farmData.forEach((farm) => {
+  const farmRef = db.collection("portfolios").doc();
+  batch.set(farmRef, farm);
 });
 
 batch

@@ -16,7 +16,7 @@ function App(): JSX.Element {
   const [harvest, setHarvest] = useState<DocumentData | null>(null);
   const { state, sendTransaction } = useSendTransaction();
   const [openTip, setOpenTip] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<'The Trade Winds' | 'Disclosures'>('The Trade Winds');
+  const [currentPage, setCurrentPage] = useState<'The Trade Winds' | 'Disclosures' | 'Portfolios'>('The Trade Winds');
   const trackUrls = [
     'https://openseauserdata.com/files/a48db64415813e83744d64e2383320e7.wav',
     'https://openseauserdata.com/files/6fa6d2cb8479465485bec5c198588a9e.wav',
@@ -171,7 +171,7 @@ function App(): JSX.Element {
               Substack
             </a>
             <a href='https://apps.tortugaonchain.com' target='_blank' className="border-2 ml-3 mt-2 border-theme-yellow text-md px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20 justify-center text-center inline-flex mx-auto">
-             Trading Dashboard
+              Trading Dashboard
             </a>
             {account && <button onClick={() => setOpenTip(true)} className="border-2 ml-3 mt-2 border-theme-yellow text-md px-2 rounded-sm bg-theme-gray hover:bg-theme-yellow/20 justify-center text-center inline-flex mx-auto">
               Tip Barkeep
@@ -282,6 +282,13 @@ function App(): JSX.Element {
           </button>
 
           <button
+            onClick={() => setCurrentPage('Portfolios')}
+            className={`mt-4 mb-4 border-2 border-theme-yellow mr-3 text-md px-2 rounded-sm ${currentPage === 'Portfolios' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray'}  justify-center text-center inline-flex mx-auto`}
+          >
+            Portfolios
+          </button>
+
+          <button
             onClick={() => setCurrentPage('Disclosures')}
             className={`mt-4 mb-4 border-2 border-theme-yellow text-md px-2 rounded-sm ${currentPage === 'Disclosures' ? 'bg-theme-yellow text-theme-gray' : 'bg-theme-gray text-theme-yellow'}  justify-center text-center inline-flex mx-auto`}
           >
@@ -291,8 +298,8 @@ function App(): JSX.Element {
         </div>}
       <>
         {currentPage === 'The Trade Winds' ? (
-          <Articles config={harvest}></Articles>
-        ) : (
+          <Articles config={harvest} dbCollection={'articles'}></Articles>
+        ) : currentPage === 'Portfolios' ? <Articles config={harvest} dbCollection={'portfolios'}></Articles> : (
           <Harvest config={harvest}></Harvest>
         )}
 
