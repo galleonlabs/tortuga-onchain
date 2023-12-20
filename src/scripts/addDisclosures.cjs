@@ -9,10 +9,34 @@ const db = admin.firestore();
 
 const disclosureData = [
   {
-    name: "Blur",
-    ticker: "BLUR",
-    coinGeckoUrl: "https://www.coingecko.com/en/coins/blur",
-    logo: "https://assets.coingecko.com/coins/images/28453/standard/blur.png",
+    name: "Set Labs",
+    liquid: false,
+    logo: "/set.jpg",
+    link: "https://twitter.com/setprotocol",
+  },
+  {
+    name: "Debt DAO",
+    liquid: false,
+    logo: "/debtdao.jpg",
+    link: "https://twitter.com/debtdao",
+  },
+  {
+    name: "STFX",
+    liquid: false,
+    logo: "/stfx.jpg",
+    link: "https://twitter.com/STFX_IO",
+  },
+  {
+    name: "Insrt Finance",
+    liquid: false,
+    logo: "/insrt.jpg",
+    link: "https://twitter.com/insrtfinance",
+  },
+  {
+    name: "RareRound",
+    liquid: false,
+    logo: "/rr.jpg",
+    link: "https://twitter.com/rareround",
   },
 ];
 
