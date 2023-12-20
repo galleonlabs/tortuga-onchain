@@ -39,7 +39,7 @@ const Disclosures = ({ config }: DisclosuresProps) => {
 
   return (
     <div >
-      {account ? (
+      {uniqueAssets.length > 0 ? (
         <div className="mx-auto bg-theme-gray border-2 border-theme-yellow rounded-sm max-w-4xl py-4 tracking-wider">
           <h1 className="text-lg font-bold text-theme-yellow  text-center ">Disclosures</h1>
           <p className='text-md text-center pb-4'>Long-term assets currently held in the treasury</p>
