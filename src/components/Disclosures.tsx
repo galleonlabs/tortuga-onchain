@@ -1,4 +1,3 @@
-import { useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
 import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { db } from "../main";
@@ -17,11 +16,10 @@ interface DisclosuresProps {
 }
 
 const Disclosures = ({ config }: DisclosuresProps) => {
-  const { account } = useEthers();
   const [uniqueAssets, setUniqueAssets] = useState<HeldAsset[]>([]);
 
   useEffect(() => {
-    if (!account) return;
+ 
     console.log('config:', config);
 
     const fetchDisclosures = async () => {
@@ -35,7 +33,7 @@ const Disclosures = ({ config }: DisclosuresProps) => {
     };
 
     fetchDisclosures();
-  }, [account]);
+  }, []);
 
   return (
     <div >
