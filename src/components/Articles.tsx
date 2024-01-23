@@ -21,7 +21,7 @@ const Articles = ({ config, dbCollection }: ArticlesProps) => {
   useEffect(() => {
 
     console.log('config: ', config)
-    const fetchActiveFarms = async (fetchCount: number = 10) => {
+    const fetchActiveFarms = async (fetchCount: number = 5) => {
       const articleQuery = query(collection(db, dbCollection), limit(fetchCount));
       const querySnapshot = await getDocs(articleQuery);
       const fetchedArticles: Article[] = [];
@@ -32,7 +32,7 @@ const Articles = ({ config, dbCollection }: ArticlesProps) => {
     };
 
     const fetchData = async () => {
-      fetchActiveFarms(10);
+      fetchActiveFarms(5);
     };
 
     fetchData();
