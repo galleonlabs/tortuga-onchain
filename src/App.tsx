@@ -155,7 +155,7 @@ function App(): JSX.Element {
 
 
   return (
-    <div className='mx-auto max-w-4xl  min-h-full mb-32 text-theme-yellow rounded-sm mt-16  justify-center '>
+    <div className='mx-auto max-w-4xl  min-h-full  text-theme-yellow rounded-sm mt-16  justify-center  mb-32'>
       <>
         <div className="bg-theme-gray  justify-center mx-auto pb-8   rounded-sm max-w-4xl py-4  pt-8">
           <h1 className="text-xl font-bold mb-2 pt-4 text-center ">Tortuga Onchain</h1>
